@@ -1,0 +1,25 @@
+#list1 .form-control {
+    border-color: transparent;
+}
+
+#list1 .form-control:focus {
+    border-color: transparent;
+    box-shadow: none;
+}
+
+#list1 .select-input.form-control[readonly]:not([disabled]) {
+    background-color: #fbfbfb;
+}
+
+.card-body.invalid {
+    border: 1px solid #f71010;
+}
+
+button.btn-wrap {
+    padding: 2px 7px 2px 7px !important;
+}
+
+div#task-wrap {
+    max-height: 500px;
+    overflow-y: scroll;
+}
