@@ -92,10 +92,7 @@
                         }
                     },
                     error: function(err) {
-                        if (err.status === 422) {
-                            const error = err.responseJSON.message;
-                            toastr.warning(error);
-                        }
+                        console.log(err);
                     },
                     complete: function() {
                         submitBtn.attr('disabled', false);

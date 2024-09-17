@@ -58,7 +58,10 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validateTaskRequest($request);
+        $validationResponse  = $this->validateTaskRequest($request);
+        if ($validationResponse !== true) {
+            return $validationResponse;
+        }
         try {
             $task = new Task();
             $task->title = $request->task;
@@ -74,13 +77,19 @@ class TaskController extends Controller
 
     public function validateTaskRequest($request)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'task' => 'required|unique:tasks,title',
         ], [
             'task.required' => 'The task field is required.',
             'task.unique' => 'This task has already been created!',
         ]);
+
+        if ($validator->fails()) {
+            return response()->json(['status' => 400, 'message' => $validator->errors()->first()]);
+        }
+        return true;
     }
+
 
     /**
      * Update the specified resource in storage.
